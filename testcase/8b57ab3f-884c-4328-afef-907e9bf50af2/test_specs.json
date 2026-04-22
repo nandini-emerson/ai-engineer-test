@@ -1,0 +1,16 @@
+{
+  "name": "ComputeRequest validation rejects empty raw_expression",
+  "description": "Functional test: validate Pydantic model ComputeRequest and its field_validator validate_expression to ensure an empty or whitespace-only raw_expression raises ValidationError.",
+  "test_type": "functional",
+  "input": "Attempt to construct ComputeRequest(request_id='req-1', raw_expression='   ', precision=None, show_steps=False)",
+  "output": "Pydantic ValidationError raised during ComputeRequest construction (field raw_expression invalid).",
+  "success_criteria": [
+    "Construction of ComputeRequest raises pydantic.ValidationError",
+    "Validation error message mentions 'raw_expression is empty' or equivalent",
+    "request_id validator (validate_request_id) trims and enforces presence when tested separately"
+  ],
+  "error_scenarios": [
+    "pydantic.ValidationError",
+    "ValueError from field validators"
+  ]
+}
