@@ -1,0 +1,16 @@
+{
+  "name": "LLMServiceClient.call_llm_for_explanation propagates missing LLM client error",
+  "description": "Security test: ensure that LLMServiceClient.call_llm_for_explanation raises or propagates an error when get_llm_client() raises ValueError due to missing AZURE_OPENAI_API_KEY. This prevents silent LLM calls without credentials.",
+  "test_type": "security",
+  "input": "Ensure Config.AZURE_OPENAI_API_KEY is empty, then await LLMServiceClient().call_llm_for_explanation(sanitized_expression='1+1', parsed_expression='1+1', result=Decimal('2'), steps=[])",
+  "output": "Exception (ValueError) raised from get_llm_client indicating missing AZURE_OPENAI_API_KEY, and call_llm_for_explanation does not return a normal string",
+  "success_criteria": [
+    "call_llm_for_explanation raises ValueError (or propagates the underlying exception from get_llm_client)",
+    "No network call attempt is made when API key is missing (best-effort; could be asserted via mocking)",
+    "The exception message points to missing AZURE_OPENAI_API_KEY"
+  ],
+  "error_scenarios": [
+    "If test environment has AZURE_OPENAI_API_KEY set, the call may attempt real network communication (tests must isolate or mock get_llm_client)",
+    "Different exception types propagated (e.g., AttributeError) if decorator with_content_safety alters behavior"
+  ]
+}
