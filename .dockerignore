@@ -1,0 +1,86 @@
+
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDE/editor
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# Documentation
+README.md
+*.md
+docs/
+
+# Tests
+tests/
+test_*
+*_test.py
+.pytest_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Environment files
+.env
+.env.*
+*.env
+
+# Logs
+*.log
+logs/
+
+# Deployment files (exclude deploy folder and dockerignore itself)
+deploy/
+.dockerignore
+
+# Other development-only files
+*.sqlite
+*.db
+.idea/
+local_settings.py
+*.iml
+*.log.*
+coverage/
+htmlcov/
+.pytest_cache/
+migrations/
+__pycache__/
+*.cover
+.coverage
+*/__pycache__/
+*.egg
+*.egg-info/
+.cache/
+pip-wheel-metadata/
+*.dist-info/
+*.egg-info/
+pip-log.txt
+npm-debug.log
+yarn-error.log
+.env.local
+.env.test
+.vagrant/
+.idea/
+.tmp/
+
