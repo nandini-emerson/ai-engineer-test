@@ -1,0 +1,17 @@
+{
+  "name": "FastAPI /compute endpoint end-to-end integration",
+  "description": "Integration test: use FastAPI test client to POST to /compute with valid ComputeRequest JSON and assert HTTP response and body mapping to orchestrator result. Verifies compute_endpoint wiring, Pydantic validation, and JSONResponse behavior.",
+  "test_type": "integration",
+  "input": "POST /compute with JSON: {\"request_id\":\"r1\",\"raw_expression\":\"2+2\",\"precision\":2,\"show_steps\":false}",
+  "output": "HTTP 200 response with JSON body containing success True and structured_json.result equal to 4.0",
+  "success_criteria": [
+    "HTTP status code == 200",
+    "Response body is JSON and contains 'success': True",
+    "structured_json contains 'result' equal to 4.0 (or equivalent)",
+    "No unhandled exceptions and compute_endpoint returns the orchestrator payload"
+  ],
+  "error_scenarios": [
+    "422 Unprocessable Entity if request body fails ComputeRequest validation",
+    "500 Internal server error if orchestrator.process raises unexpected exception"
+  ]
+}
