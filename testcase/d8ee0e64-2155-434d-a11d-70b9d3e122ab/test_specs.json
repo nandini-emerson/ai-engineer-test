@@ -1,0 +1,16 @@
+{
+  "name": "CacheClient set/get respects TTL expiry",
+  "description": "Functional test: verify CacheClient.set and CacheClient.get behavior including TTL expiration logic implemented by _now, set, and get.",
+  "test_type": "functional",
+  "input": "Instantiate CacheClient(), call set('k','v', ttl=1), immediately get('k'), sleep 1.5s, then get('k') again",
+  "output": "Initial get returns stored value, subsequent get after TTL returns None",
+  "success_criteria": [
+    "Initial cache.get('k') returns the stored value 'v'",
+    "After sleeping past TTL, cache.get('k') returns None",
+    "No exceptions are raised during set/get operations"
+  ],
+  "error_scenarios": [
+    "Time-related flakiness if system sleeps are unreliable",
+    "Unexpected exceptions modifying internal _store"
+  ]
+}
