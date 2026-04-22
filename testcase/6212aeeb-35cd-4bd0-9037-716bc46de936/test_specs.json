@@ -1,0 +1,16 @@
+{
+  "name": "RequestValidator rejects disallowed security patterns",
+  "description": "Security test: ensure RequestValidator.validate_and_sanitize returns valid==False and errors include 'SECURITY_REJECTED' when raw_expression contains disallowed patterns such as 'import' or '__'.",
+  "test_type": "security",
+  "input": "Call RequestValidator().validate_and_sanitize(\"import os; os.system('rm -rf /')\")",
+  "output": "Tuple (sanitized_expression, False, errors) where errors contains 'SECURITY_REJECTED'",
+  "success_criteria": [
+    "Second element of return tuple (valid) is False",
+    "errors list includes the string 'SECURITY_REJECTED'",
+    "Sanitized expression returned (first element) is the trimmed original (or at least present) and not executed"
+  ],
+  "error_scenarios": [
+    "False negatives if regex patterns are miswritten and do not match malicious tokens",
+    "Unexpected exceptions from regex operations"
+  ]
+}
