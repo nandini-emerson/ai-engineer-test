@@ -1,0 +1,16 @@
+{
+  "name": "Config._validate_api_keys raises for missing provider-specific keys",
+  "description": "Security test: verify Config._validate_api_keys raises ValueError when Config.MODEL_PROVIDER is 'azure' and Config.AZURE_OPENAI_API_KEY is missing or empty. Ensures API key validation enforcement logic.",
+  "test_type": "security",
+  "input": "Temporarily set Config.MODEL_PROVIDER='azure' and Config.AZURE_OPENAI_API_KEY='' then call Config._validate_api_keys()",
+  "output": "ValueError raised with message indicating missing AZURE_OPENAI_API_KEY",
+  "success_criteria": [
+    "Config._validate_api_keys raises ValueError",
+    "Exception message references 'AZURE_OPENAI_API_KEY' or requirement for the azure provider",
+    "No silent acceptance when required keys are missing"
+  ],
+  "error_scenarios": [
+    "Test environment may have AZURE_OPENAI_API_KEY populated causing the test to not raise (test must ensure isolated environment)",
+    "Side-effects if Config state is not restored after test"
+  ]
+}
