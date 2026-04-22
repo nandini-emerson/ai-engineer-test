@@ -1,0 +1,18 @@
+{
+  "name": "Formatter formats and rounds Decimal with precision and units",
+  "description": "Functional test: verify Formatter.format_result applies ROUND_HALF_EVEN quantize behavior and returns expected 'human_text' and 'structured_json' fields. Uses Formatter.format_result with raw_result Decimal('2.345'), precision=2, units='km'.",
+  "test_type": "functional",
+  "input": "Call Formatter().format_result(raw_result=Decimal('2.345'), precision=2, units='km', show_steps=False, parsed_expression='2.345', steps_text=None)",
+  "output": "Dictionary with human_text containing rounded result and units; structured_json contains original_expression, parsed_expression, result, units, precision_used, explanation None",
+  "success_criteria": [
+    "Returned dict contains keys 'human_text' and 'structured_json'",
+    "'human_text' contains the rounded value '2.34' or '2.35' consistent with ROUND_HALF_EVEN (2.345 -> 2.34)",
+    "structured_json['precision_used'] == 2",
+    "structured_json['units'] == 'km'",
+    "structured_json['result'] is numeric (float or string) and matches the rounded value"
+  ],
+  "error_scenarios": [
+    "Decimal quantize errors if q is incorrectly computed",
+    "Type errors if raw_result is not Decimal"
+  ]
+}
