@@ -1,0 +1,8 @@
+{
+  "request_id": "string",
+  "raw_expression": "string",
+  "precision": "int",
+  "show_steps": "bool",
+  "target_unit": "string",
+  "selected_document_titles": "list"
+}
