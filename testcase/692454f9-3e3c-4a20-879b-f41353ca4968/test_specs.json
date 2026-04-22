@@ -1,0 +1,18 @@
+{
+  "name": "Orchestrator.process handles units and target_unit conversion",
+  "description": "Integration test: verify end-to-end path where SafeExpressionParser.detects units, MathEvaluator evaluates numeric part, UnitConverter.convert applies conversion, Formatter formats result, and final payload indicates converted units. Use raw_expression '5 mile' and target_unit 'km'.",
+  "test_type": "integration",
+  "input": "Call agent.process(request_id='conv1', raw_expression='5 mile', precision=2, show_steps=False, target_unit='km')",
+  "output": "Payload dict success True with structured_json['units'] == 'km' and structured_json['result'] approximating 8.05 (5 * 1.609344 -> 8.04672 rounded to 2 decimals)",
+  "success_criteria": [
+    "Returned payload 'success' == True",
+    "structured_json['units'] == 'km'",
+    "structured_json['result'] approximately equals 8.05 (allow small float tolerance)",
+    "AuditLogger.log is invoked (best-effort) and no fatal exceptions are thrown"
+  ],
+  "error_scenarios": [
+    "ERR_UNSUPPORTED_OPERATION if UnitConverter fails or mapping not found",
+    "Conversion returns conv_err and orchestrator returns fallback response",
+    "Parsing does not detect units resulting in units being final_units None"
+  ]
+}
