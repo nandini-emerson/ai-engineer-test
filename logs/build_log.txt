@@ -1,0 +1,103 @@
+2026-04-19 22:56:07 | INFO     | build_process:884 | Starting build process...
+2026-04-19 22:56:16 | INFO     | build_process:1001 | Resolved build LLM config: provider=openai, model=gpt-5-mini
+2026-04-19 22:56:16 | INFO     | build_process:1110 | Initializing code generation agent...
+2026-04-19 22:56:21 | INFO     | build_process:1131 | Phase 1: Copying infrastructure modules BEFORE code generation...
+2026-04-19 22:56:22 | INFO     | build_process:1173 | Added required prebuilt module 'guardrails' for runtime safety packaging
+2026-04-19 22:56:22 | INFO     | build_process:1177 | Copying prebuilt modules: ['guardrails']
+2026-04-19 22:56:22 | INFO     | modules.builder.code_generation_agent:3764 | Copying 1 prebuilt module(s): ['guardrails']
+2026-04-19 22:56:26 | INFO     | modules.builder.code_generation_agent:3775 | Successfully copied 4 files from 1 module(s)
+2026-04-19 22:56:26 | INFO     | build_process:1194 | Successfully copied 4 files from prebuilt modules
+2026-04-19 22:56:29 | INFO     | build_process:1715 | Observability bundle: rewrote imports in database/base.py — core.config→config: True; core.logging→logging: False
+2026-04-19 22:56:29 | INFO     | build_process:1715 | Observability bundle: rewrote imports in database/engine.py — core.config→config: True; core.logging→logging: True
+2026-04-19 22:56:31 | INFO     | build_process:1715 | Observability bundle: rewrote imports in instrumentation.py — core.config→config: True; core.logging→logging: False
+2026-04-19 22:56:32 | INFO     | build_process:1715 | Observability bundle: rewrote imports in observability_service.py — core.config→config: True; core.logging→logging: False
+2026-04-19 22:56:34 | INFO     | build_process:1715 | Observability bundle: rewrote imports in observability_wrapper.py — core.config→config: True; core.logging→logging: False
+2026-04-19 22:56:36 | INFO     | build_process:1733 | Observability module bundled into 6675d4e6-9f20-4270-8609-43760b6667ff/b09a90f0-c7c1-4347-9336-ece00c04cf26/builds/752ccbeb-ed1f-4bf1-91b9-225b33c7e271/code/observability: 9 file(s) written
+2026-04-19 22:56:36 | INFO     | build_process:1307 | Observability module bundled: 9 file(s) copied to code/observability/
+2026-04-19 22:56:36 | INFO     | build_process:1328 | Phase 2: Building comprehensive module context (Step 0) and scanning for config requirements...
+2026-04-19 22:57:04 | INFO     | build_process:1358 | Comprehensive module context built (Step 0): 2 modules, 13 files, prompt section 194993 chars
+2026-04-19 22:57:04 | INFO     | build_process:1366 | Module scan complete: 14 config refs, 2 module summaries
+2026-04-19 22:57:04 | INFO     | build_process:1371 | Config variables needed by modules: AZURE_CONTENT_SAFETY_ENDPOINT, AZURE_CONTENT_SAFETY_KEY, CONTENT_SAFETY_ENABLED, CONTENT_SAFETY_SEVERITY_THRESHOLD, ENVIRONMENT, LLM_MODELS, OBS_AZURE_SQL_DATABASE, OBS_AZURE_SQL_PASSWORD, OBS_AZURE_SQL_PORT, OBS_AZURE_SQL_SCHEMA, OBS_AZURE_SQL_SERVER, OBS_AZURE_SQL_USERNAME, OBS_DATABASE_TYPE, VERSION
+2026-04-19 22:57:04 | INFO     | build_process:1393 | Phase 3: Generating agent code with module context...
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1601 | Starting code generation process
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1602 | Generating components: main_agent_code, config_code, requirements_code, readme_code, test_code, deployment_config
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1604 | Module context provided — 14 config refs from modules, 2 module summaries, comprehensive=True
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1630 | SECTION A — Step 0: Comprehensive module context available — 2 modules, 13 total files, prompt section 194993 chars
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1668 | SECTION B — Generating main agent code...
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1978 | Attempting to generate main agent code using LLM
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1988 | Design serialized to JSON for LLM: 34559 chars
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:2127 | Extracted document RAG section for code generation prompt (1815 chars)
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:1996 | Document RAG section appended to code generation prompt
+2026-04-19 22:57:05 | INFO     | modules.builder.code_generation_agent:2015 | Module context appended to system prompt (33425 chars base + 194993 chars modules)
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2032 | Main agent code successfully generated using LLM
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1674 | B.1 — Injecting runtime guardrails into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1677 | Guardrails injection complete: 37901 → 38143 chars (added 242 chars)
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1683 | B.2 — Injecting observability wrappers into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:700 | _decorate_with_trace_agent: selected CalculatorAgentOrchestrator.process from 1 candidate(s)
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:845 | _inject_observability_wrappers: finished — import block injected: True; @trace_agent decorators in output: 1
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1687 | Observability wrappers injection complete: 38143 → 39296 chars; @trace_agent decorators placed: 1; observability import block present: True
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1701 | B.3 — Fixing trace_step async/sync mismatches in generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1704 | trace_step mismatch fix complete: 39296 → 39296 chars
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1710 | B.4 — Injecting model-call tracing into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1714 | Model-call tracing injection complete: 39296 → 39899 chars; trace_model_call sites: 2
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1726 | B.5 — Injecting tool-call tracing into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1730 | Tool-call tracing injection complete: 39899 → 39899 chars; trace_tool_call sites: 1
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1736 | B.6 — Injecting evaluation service entrypoint into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2663 | _inject_evaluation_service_entrypoint: rewrote __main__ block at line 849 — _run_agent injected: True; inner_call lines: 8
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1741 | Evaluation service entrypoint injection complete: 39899 → 42062 chars; initialize_tracer() present: True; start_evaluation_worker present: False
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1754 | B.7 — Injecting FastAPI observability startup handlers into generated agent code...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1759 | FastAPI observability lifespan injection complete: 42062 → 42062 chars; lifespan present: True
+2026-04-19 22:58:44 | WARNING  | modules.builder.code_generation_agent:2151 | Compile-check failed for agent.py — applying auto-fixes
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2205 | agent.py: commented out syntax error at line 672: unterminated string literal (detected at line 672)
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2205 | agent.py: commented out syntax error at line 44: from __future__ imports must occur at the beginning of the file
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2192 | agent.py: auto-fix succeeded
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1784 | SECTION B complete — agent.py: 42090 characters
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1796 | SECTION C — Scanning config variable references...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1800 | Config variable scan: 3 from agent.py, 14 from modules, 17 total unique
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1817 | SECTION D — Generating config.py...
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:1828 | Passing 13 module source files (185740 chars) as context for config.py generation
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2695 | Attempting to generate config code using LLM
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2744 | Loaded platform config reference for LLM context (36826 chars)
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2754 | Appended 17 discovered config variable refs to config.py prompt
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2771 | Passed agent.py (42090 chars) as context for config.py generation
+2026-04-19 22:58:44 | INFO     | modules.builder.code_generation_agent:2783 | Passed module source files (185740 chars) as context for config.py generation
+2026-04-19 22:59:59 | INFO     | modules.builder.code_generation_agent:2813 | Config code successfully generated using LLM
+2026-04-19 22:59:59 | INFO     | modules.builder.code_generation_agent:1846 | SECTION D complete — config.py: 19447 characters
+2026-04-19 22:59:59 | INFO     | modules.builder.code_generation_agent:1862 | SECTION E.1 — Generating .env.example...
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:3475 | .env.example generated by LLM
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:1864 | .env.example generated: 6779 characters
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:1867 | SECTION E.2 — Generating validation_config.json...
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:3732 | _generate_validation_config_json: extracted schema with 6 top-level keys: ['request_id', 'raw_expression', 'precision', 'show_steps', 'target_unit', 'selected_document_titles']
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:1869 | validation_config.json generated (169 bytes)
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:1872 | SECTION E.3 — Generating test_agent.py...
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:3317 | Generating test code
+2026-04-19 23:11:10 | INFO     | modules.builder.code_generation_agent:3322 | Using TesterAgent LLM pipeline for test code generation
+2026-04-19 23:13:08 | INFO     | modules.builder.code_generation_agent:1875 | test_agent.py generated: 6997 characters
+2026-04-19 23:13:08 | INFO     | modules.builder.code_generation_agent:1878 | SECTION E.4 — Generating Dockerfile...
+2026-04-19 23:13:08 | INFO     | modules.builder.code_generation_agent:3360 | Attempting to generate deployment config using LLM
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:3403 | Deployment config successfully generated using LLM
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:3404 |   Dockerfile: 1297 chars
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:3405 |   .dockerignore: 807 chars
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:1885 | Dockerfile: 1297 chars, .dockerignore: 807 chars
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:1897 | SECTION F — Generating README.md with full file context...
+2026-04-19 23:13:48 | INFO     | modules.builder.code_generation_agent:3089 | Generating README.md
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:3123 | README.md generated via LLM with full file context (3442 chars)
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:1906 | SECTION F complete — README.md: 3442 characters
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:1922 | SECTION G — Validating and fixing generated agent code...
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:1930 | SECTION G complete — 2 fix(es) applied, 0 warning(s):
+  FIX: removed duplicate import: import uvicorn
+  FIX: added missing 'import time as _time'
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:1936 | agent.py: 42090 → 42092 chars after validation
+2026-04-19 23:14:23 | INFO     | modules.builder.code_generation_agent:1944 | Code generation process completed successfully
+2026-04-19 23:14:24 | INFO     | build_process:1421 | Code validation skipped for build (no guardrails/content safety/credentials checks)
+2026-04-19 23:14:24 | INFO     | build_process:1437 | Phase 4: Saving generated code files...
+2026-04-19 23:14:30 | INFO     | build_process:1483 | Test code also saved to 6675d4e6-9f20-4270-8609-43760b6667ff/b09a90f0-c7c1-4347-9336-ece00c04cf26/builds/752ccbeb-ed1f-4bf1-91b9-225b33c7e271/testcase/testcode/test_agent.py
+2026-04-19 23:14:35 | INFO     | build_process:1559 | validation_config.json saved to build output
+2026-04-19 23:14:35 | INFO     | build_process:1564 | Generating requirements.txt (final step after all modules copied)...
+2026-04-19 23:14:35 | INFO     | modules.builder.code_generation_agent:3014 | Generating requirements.txt (hybrid deterministic + LLM)
+2026-04-19 23:14:35 | INFO     | modules.builder.code_generation_agent:2996 | Loaded master requirements.txt from C:\Users\nandevi\emerson-mas\agent-building-agent\backend\requirements.txt (3325 characters)
+2026-04-19 23:14:35 | INFO     | modules.builder.code_generation_agent:2962 | Core runtime packages matched 18 from master requirements (minimal set for observability + config infrastructure)
+2026-04-19 23:15:43 | INFO     | modules.builder.code_generation_agent:3055 | LLM agent-specific requirements filtered successfully
+2026-04-19 23:15:43 | INFO     | modules.builder.code_generation_agent:3070 | Final merged requirements: 24 packages
+2026-04-19 23:15:44 | INFO     | build_process:1577 | requirements.txt saved: 24 packages
+2026-04-19 23:15:44 | INFO     | build_process:1581 | Build completed successfully!
