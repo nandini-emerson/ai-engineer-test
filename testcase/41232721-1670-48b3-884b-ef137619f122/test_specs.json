@@ -1,0 +1,17 @@
+{
+  "name": "Orchestrator.process evaluates simple numeric expression",
+  "description": "Integration test: exercise CalculatorAgentOrchestrator.process end-to-end for a plain numeric expression. Uses agent.process(request_id, raw_expression='1+2*3', precision=3, show_steps=False, target_unit=None).",
+  "test_type": "integration",
+  "input": "Call agent.process(request_id='test1', raw_expression='1+2*3', precision=3, show_steps=False, target_unit=None)",
+  "output": "Payload dict with success True, human_text and structured_json containing computed result (7) and precision_used 3",
+  "success_criteria": [
+    "Returned payload is a dict with 'success' == True",
+    "structured_json contains 'result' representing 7 (as float 7.0 or Decimal->float)",
+    "structured_json['precision_used'] == 3 or respects provided precision",
+    "No security or parsing error codes present"
+  ],
+  "error_scenarios": [
+    "ERR_UNSUPPORTED_OPERATION from MathEvaluator.evaluate if expression not parseable",
+    "Unexpected exceptions from sympy if SYMPY_AVAILABLE and evaluation fails"
+  ]
+}
